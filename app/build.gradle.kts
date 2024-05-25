@@ -75,6 +75,9 @@ dependencies {
 
     //Splash Screen
     implementation(libs.androidx.core.splashscreen)
+
+    // ViewModel utilities for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
