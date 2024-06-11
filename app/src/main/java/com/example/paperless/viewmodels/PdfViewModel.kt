@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 
 class PdfViewModel: ViewModel() {
     var isSplashScreen by mutableStateOf(false)
+    var showRenameDialog  by mutableStateOf(false)
+    var loadingDialog by mutableStateOf(false)
 
     init {
         viewModelScope.launch {

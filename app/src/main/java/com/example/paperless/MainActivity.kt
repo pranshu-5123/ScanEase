@@ -2,10 +2,9 @@ package com.example.paperless
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.paperless.screens.HomeScreen
+import com.example.paperless.screens.home.HomeScreen
 import com.example.paperless.ui.theme.PaperlessTheme
 import com.example.paperless.viewmodels.PdfViewModel
 
@@ -19,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             splashScreen.setKeepOnScreenCondition{pdfViewModel.isSplashScreen}
             PaperlessTheme {
-                    HomeScreen()
+                    HomeScreen(pdfViewModel)
                 }
             }
         }
