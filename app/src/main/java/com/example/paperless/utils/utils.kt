@@ -24,18 +24,18 @@ fun copyPDfFileToAppDirectory(context: Context,pdfUri:Uri,destinationFileName:St
         return file.deleteRecursively()
     }
 
-    fun getFileSize(context:Context,fileName:String):String{
-        val file=File(context.filesDir,fileName)
-        val fileSizeBytes=file.length()
-        val fileSizeKB=fileSizeBytes/1024
-        return if(fileSizeKB>1024){
-            val fileSizeMB=fileSizeKB/1024
-            "$fileSizeKB MB"
-        }
-        else{
-            "$fileSizeKB KB"
-        }
-    }
+//    fun getFileSize(context:Context,fileName:String):String{
+//        val file=File(context.filesDir,fileName)
+//        val fileSizeBytes=file.length()
+//        val fileSizeKB=fileSizeBytes/1024
+//        return if(fileSizeKB>1024){
+//            val fileSizeMB=fileSizeKB/1024
+//            "$fileSizeKB MB"
+//        }
+//        else{
+//            "$fileSizeKB KB"
+//        }
+//    }
     fun renameFile(context: Context,oldFileName:String,newFileName:String){
         val oldFile=File(context.filesDir,oldFileName)
         val newFile=File(context.filesDir,newFileName)

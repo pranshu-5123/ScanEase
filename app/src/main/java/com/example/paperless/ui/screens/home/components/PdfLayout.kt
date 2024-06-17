@@ -55,9 +55,9 @@ fun PdfLayout(pdfEntity: PdfEntity, pdfViewModel: PdfViewModel){
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(text ="Size: ${pdfEntity.size}",
                     style = MaterialTheme.typography.bodyMedium)
-                    Text(text ="Date: ${SimpleDateFormat("dd-MM-yyyy HH:mm:ss", 
-                        Locale.getDefault()).format(pdfEntity.lastModifiedTime)}",
-                    style = MaterialTheme.typography.bodyMedium)
+//                    Text(text ="Date: ${SimpleDateFormat("dd-MM-yyyy HH:mm:ss",
+//                        Locale.getDefault()).format(pdfEntity.lastModifiedTime)}",
+//                    style = MaterialTheme.typography.bodyMedium)
                 }
                 IconButton(onClick = {
                     pdfViewModel.currentPdfEntity=pdfEntity
@@ -83,4 +83,3 @@ fun PdfLayout(pdfEntity: PdfEntity, pdfViewModel: PdfViewModel){
 //            lastModified="2023-06-11"
 //        )
 //    )
-//}

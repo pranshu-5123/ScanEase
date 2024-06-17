@@ -8,11 +8,11 @@ import com.example.paperless.Data.Local.Converter.DateTypeConverter
 import com.example.paperless.Data.Local.dao.PdfDao
 import com.example.paperless.Data.models.PdfEntity
 
-@Database(entities = [PdfEntity::class], version = 1, exportSchema = false)
-@TypeConverters(DateTypeConverter::class) // Place annotation here
+@Database
+    (entities = [PdfEntity::class], version = 1, exportSchema = false)
+@TypeConverters(DateTypeConverter::class)
 abstract class PDfDatabase:RoomDatabase(){
-    abstract val pdfDao: PdfDao
-
+    abstract val pdfDao:PdfDao
     companion object{
         @Volatile
         private var INSTANCES:PDfDatabase? = null

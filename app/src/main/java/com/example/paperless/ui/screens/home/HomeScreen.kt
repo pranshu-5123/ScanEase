@@ -34,7 +34,6 @@ import com.example.paperless.ui.screens.home.components.RenameDeleteDialog
 import com.example.paperless.utils.copyPDfFileToAppDirectory
 import com.example.paperless.utils.showToast
 import com.example.paperless.ui.viewmodels.PdfViewModel
-import com.example.paperless.utils.getFileSize
 import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
@@ -67,7 +66,7 @@ fun HomeScreen(pdfViewModel: PdfViewModel){
                     context,
                     pdf.uri,fileName
                     )
-                val pdfEntity= PdfEntity(UUID.randomUUID().toString(),fileName, getFileSize(context,fileName),date)
+                val pdfEntity= PdfEntity(UUID.randomUUID().toString(),fileName,"20kb",date)
                 pdfViewModel.insertPdf(pdfEntity)
             }
         }

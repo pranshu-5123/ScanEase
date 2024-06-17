@@ -12,5 +12,5 @@ data class PdfEntity(
     val id:String,
     val name:String,
     val size:String,
-    val lastModifiedTime: Date
+    val lastModified: Date
 )
