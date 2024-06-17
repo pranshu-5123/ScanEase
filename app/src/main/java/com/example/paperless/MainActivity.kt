@@ -4,12 +4,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.paperless.screens.home.HomeScreen
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.paperless.ui.screens.home.HomeScreen
 import com.example.paperless.ui.theme.PaperlessTheme
-import com.example.paperless.viewmodels.PdfViewModel
+import com.example.paperless.ui.viewmodels.PdfViewModel
 
 class MainActivity : ComponentActivity() {
-    private val pdfViewModel by viewModels<PdfViewModel>()
+    private val pdfViewModel by viewModels<PdfViewModel>{
+        viewModelFactory{
+            addInitializer(PdfViewModel::class){
+                PdfViewModel(application)
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)

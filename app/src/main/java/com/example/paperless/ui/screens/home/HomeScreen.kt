@@ -1,4 +1,4 @@
-package com.example.paperless.screens.home
+package com.example.paperless.ui.screens.home
 
 import android.app.Activity
 import android.util.Log
@@ -16,6 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -23,13 +25,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.paperless.R
-import com.example.paperless.models.PdfEntity
-import com.example.paperless.screens.common.ErrorScreen
-import com.example.paperless.screens.common.LoadingDialog
-import com.example.paperless.screens.home.components.PdfLayout
-import com.example.paperless.screens.home.components.RenameDeleteDialog
+import com.example.paperless.Data.models.PdfEntity
+import com.example.paperless.ui.screens.common.ErrorScreen
+import com.example.paperless.ui.screens.common.LoadingDialog
+import com.example.paperless.ui.screens.home.components.PdfLayout
+import com.example.paperless.ui.screens.home.components.RenameDeleteDialog
+import com.example.paperless.utils.copyPDfFileToAppDirectory
 import com.example.paperless.utils.showToast
-import com.example.paperless.viewmodels.PdfViewModel
+import com.example.paperless.ui.viewmodels.PdfViewModel
 import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
@@ -45,9 +48,7 @@ fun HomeScreen(pdfViewModel: PdfViewModel){
     RenameDeleteDialog(pdfViewModel =pdfViewModel)
     val activity=LocalContext.current as Activity
     val context=LocalContext.current
-    val pdfList= remember {
-        mutableStateListOf<PdfEntity>()
-    }
+    val pdfList by pdfViewModel.pdfStateFlow.collectAsState()
     val scannerLauncher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult())
     {result->
@@ -59,9 +60,13 @@ fun HomeScreen(pdfViewModel: PdfViewModel){
                 Log.d("pdfName",pdf.uri.lastPathSegment.toString())
                 val date= Date()
                 //val fileName="My file"
-                val fileName= SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date)
-                val pdfEntity=PdfEntity(UUID.randomUUID().toString(),fileName,"10 Kb",date)
-                pdfList.add(pdfEntity)
+                val fileName= SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(date) + ".pdf"
+                copyPDfFileToAppDirectory(
+                    context,
+                    pdf.uri,fileName
+                    )
+                val pdfEntity= PdfEntity(UUID.randomUUID().toString(),fileName,"10 Kb",date)
+                pdfViewModel.insertPdf(pdfEntity)
             }
         }
     }
@@ -98,7 +103,8 @@ fun HomeScreen(pdfViewModel: PdfViewModel){
     ) {
         paddingValue->
         if(pdfList.isEmpty()){
-            ErrorScreen(message ="No pdf found")}
+            ErrorScreen(message ="No pdf found")
+        }
         else{
         LazyColumn(modifier = Modifier
             .fillMaxSize()

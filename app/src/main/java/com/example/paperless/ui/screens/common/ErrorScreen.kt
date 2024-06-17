@@ -1,4 +1,4 @@
-package com.example.paperless.screens.common
+package com.example.paperless.ui.screens.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

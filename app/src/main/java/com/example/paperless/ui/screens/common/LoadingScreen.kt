@@ -1,4 +1,4 @@
-package com.example.paperless.screens.common
+package com.example.paperless.ui.screens.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.example.paperless.viewmodels.PdfViewModel
+import com.example.paperless.ui.viewmodels.PdfViewModel
 
 @Composable
 fun LoadingDialog(pdfViewModel: PdfViewModel){

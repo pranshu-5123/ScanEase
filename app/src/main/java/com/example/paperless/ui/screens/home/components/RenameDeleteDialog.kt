@@ -1,25 +1,27 @@
-package com.example.paperless.screens.home.components
+package com.example.paperless.ui.screens.home.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.example.paperless.R
-import com.example.paperless.models.PdfEntity
-import com.example.paperless.viewmodels.PdfViewModel
+import com.example.paperless.ui.viewmodels.PdfViewModel
+import com.example.paperless.utils.deleteFile
+import com.example.paperless.utils.renameFile
+import java.util.Date
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
-    var newNameText by remember { mutableStateOf("") }
+    var newNameText by remember(pdfViewModel.currentPdfEntity){
+    mutableStateOf(pdfViewModel.currentPdfEntity?.name ?:"")
+    }
+    val context= LocalContext.current
     if(pdfViewModel.showRenameDialog){
 
     Dialog(onDismissRequest = { pdfViewModel.showRenameDialog = false }) {
@@ -52,7 +54,12 @@ fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
                     Button(
                         onClick = {
                             // TODO: Handle delete action
-                            pdfViewModel.showRenameDialog = false
+                            pdfViewModel.currentPdfEntity?.let {
+                                pdfViewModel.showRenameDialog=false
+                                if(deleteFile(context,it.name)){
+                                    pdfViewModel.deletePdf(it)
+                                }
+                            }
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Red) // Red delete button
                     ) {
@@ -65,7 +72,20 @@ fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
 
                     Button(onClick = {
                         // TODO: Handle update action with newNameText
-                        pdfViewModel.showRenameDialog = false
+                        pdfViewModel.currentPdfEntity?.let {pdf->
+                            if(!pdf.name.equals(newNameText,true)){
+                                pdfViewModel.showRenameDialog = false
+                                renameFile(context,pdf.name,newNameText)
+                                val updatedPdf = pdf.copy(name = newNameText, lastModified= Date() )
+                            }
+                            else{
+                                pdfViewModel.showRenameDialog = false
+                            }
+                            }
+
+//                        else{
+//
+//                        }
                     },colors = ButtonDefaults.buttonColors(containerColor = Color.Green)) {
                         Text(text = "Update")
                     }
@@ -74,11 +94,4 @@ fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
         }
     }
     }
-
-}
-@Preview
-@Composable
-fun RenameDeleteDialogPreview() {
-    val viewModel = PdfViewModel() // You might need to adjust this if your ViewModel has dependencies
-    RenameDeleteDialog(viewModel)
 }
