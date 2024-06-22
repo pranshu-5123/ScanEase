@@ -77,6 +77,7 @@ fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
                                 pdfViewModel.showRenameDialog = false
                                 renameFile(context,pdf.name,newNameText)
                                 val updatedPdf = pdf.copy(name = newNameText, lastModified= Date() )
+                                pdfViewModel.updatePdf(updatedPdf)
                             }
                             else{
                                 pdfViewModel.showRenameDialog = false
