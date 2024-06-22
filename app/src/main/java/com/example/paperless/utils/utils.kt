@@ -44,5 +44,5 @@ fun copyPDfFileToAppDirectory(context: Context,pdfUri:Uri,destinationFileName:St
 
     fun getfileUri(context: Context,fileName:String):Uri{
         val file=File(context.filesDir,fileName)
-        return FileProvider.getUriForFile(context,"${context.packageName}.provider}",file)
+        return FileProvider.getUriForFile(context,"${context.packageName}.provider",file)
     }
