@@ -86,7 +86,7 @@ fun RenameDeleteDialog(pdfViewModel: PdfViewModel) {
 //                        else{
 //
 //                        }
-                    },colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                    }) {
                         Text(text = "Update")
                     }
                 }
