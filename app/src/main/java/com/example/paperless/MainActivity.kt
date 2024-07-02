@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             splashScreen.setKeepOnScreenCondition{pdfViewModel.isSplashScreen}
-            PaperlessTheme {
+            PaperlessTheme(pdfViewModel.isDarkMode,false) {
                     HomeScreen(pdfViewModel)
                 }
             }

@@ -77,6 +77,8 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     // ViewModel utilities for Compose
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

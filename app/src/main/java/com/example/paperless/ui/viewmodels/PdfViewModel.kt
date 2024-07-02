@@ -19,6 +19,7 @@ class PdfViewModel(application: Application): ViewModel() {
     var isSplashScreen by mutableStateOf(false)
     var showRenameDialog  by mutableStateOf(false)
     var loadingDialog by mutableStateOf(false)
+    var isDarkMode by mutableStateOf(false)
 
     private val pdfRepository=PdfRepository(application)
 
@@ -33,6 +34,7 @@ class PdfViewModel(application: Application): ViewModel() {
             isSplashScreen=false
         }
         viewModelScope.launch(Dispatchers.IO) {
+            //` delay(5000)
             pdfRepository.getPdfList().catch{
                 it.printStackTrace()
             }.collect{
