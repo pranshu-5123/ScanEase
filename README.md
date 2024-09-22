@@ -5,6 +5,10 @@ Scan Ease is your ultimate document scanning companion, transforming physical pa
 
 
 ## Screenshots
+![Unefwtitlfewed](https://github.com/user-attachments/assets/85d4c531-ea15-49af-a348-caf2b60dc429)
+![Untitlrgeed(1)](https://github.com/user-attachments/assets/9793f71f-808b-47a0-a719-e1dd9e1ce109)
+![Untitled(2)](https://github.com/user-attachments/assets/80f676a5-845d-444d-97e1-c4138942cafb)
+
 
 
 
