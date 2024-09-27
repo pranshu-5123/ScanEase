@@ -25,7 +25,7 @@ Scan Ease is your ultimate document scanning companion, transforming physical pa
 
 - Light/dark mode toggle.
 - Scribble Remover.
-- Auto Doc Scanning.
+- Auto Docs Scanning.
 - AI enabled noise reduction.
 - Docs Management.
 - In built Filters.
