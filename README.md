@@ -20,7 +20,7 @@ Scan Ease is your ultimate document scanning companion, transforming physical pa
 
 **-Gradle.** 
 
-**-MVVM*.*
+**-MVVM.**
 ## Features
 
 - Light/dark mode toggle.
