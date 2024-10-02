@@ -14,13 +14,13 @@ Scan Ease is your ultimate document scanning companion, transforming physical pa
 
 ## Tech Stack
 
-**-Kotlin** 
+**-Kotlin.** 
 
-**-Jetpack Compose**
+**-Jetpack Compose.**
 
-**-Gradle** 
+**-Gradle.** 
 
-**-MVVM**
+**-MVVM*.*
 ## Features
 
 - Light/dark mode toggle.
