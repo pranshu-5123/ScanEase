@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Paperless"
+rootProject.name = "Scan Ease"
 include(":app")
  
